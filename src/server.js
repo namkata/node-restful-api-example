@@ -2,6 +2,10 @@ const express = require("express");
 const path = require("node:path");
 const app = express();
 
+const webRoutes = require('./routes/web');
+
+const configViewEngine = require('./config/viewEngine');
+
 /**
  * 
  * dependencies vs Devdependencies:
@@ -16,20 +20,10 @@ require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 const port = process.env.PORT || 8000;
 const hostname = process.env.HOST_NAME || "127.0.0.1";
 
-// configure static
-app.use(express.static(path.join(__dirname, 'public')))
+configViewEngine(app);
 
-// configure ejs template
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.get("/abc", (req, res) => {
-  res.render("sample.ejs");
-});
+// calling router here
+app.use(webRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at ${hostname}:${port}`);
