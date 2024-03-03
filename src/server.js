@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("node:path");
 const app = express();
 const webRoutes = require("./routes/web");
-const connection = require("./config/database");
 const configViewEngine = require("./config/viewEngine");
 
 /**
@@ -20,6 +19,9 @@ const port = process.env.PORT || 8000;
 const hostname = process.env.HOST_NAME || "127.0.0.1";
 
 configViewEngine(app);
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 // calling router here
 app.use(webRoutes);
