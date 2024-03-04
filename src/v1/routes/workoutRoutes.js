@@ -4,19 +4,60 @@ const router = express.Router();
 const workoutController = require("../../controllers/workoutController");
 const recordController = require("../../controllers/recordController");
 
-router.get("/getAllWorkouts", workoutController.getAllWorkouts);
+/**
+ * @openapi
+ * /api/v1/workouts:
+ *   get:
+ *     tags:
+ *       - Workouts
+ *     parameters:
+ *       - in: query
+ *         name: mode
+ *         schema:
+ *           type: string
+ *         description: The mode of a workout
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: "#/components/schemas/Workout"
+ *       5XX:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: FAILED
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     error:
+ *                       type: string
+ *                       example: "Some error message"
+ */
+router.get("/", workoutController.getAllWorkouts);
 
-router.get("/getWorkoutById/:workoutId", workoutController.getOneWorkout);
+router.get("/:workoutId", workoutController.getOneWorkout);
 
-router.post("/createWorkout", workoutController.createNewWorkout);
+router.post("/", workoutController.createNewWorkout);
 
-router.patch("/updateWorkout/:workoutId", workoutController.updateOneWorkout);
+router.patch("/:workoutId", workoutController.updateOneWorkout);
 
-router.delete("/deleteWorkout/:workoutId", workoutController.deleteOneWorkout);
+router.delete("/:workoutId", workoutController.deleteOneWorkout);
 
-router.get(
-  "/getWorkoutById/:workoutId/records",
-  recordController.getRecordForWorkout
-);
+router.get("/:workoutId/records", recordController.getRecordForWorkout);
 
 module.exports = router;
