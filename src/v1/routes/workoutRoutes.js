@@ -2,15 +2,21 @@
 const express = require("express");
 const router = express.Router();
 const workoutController = require("../../controllers/workoutController");
+const recordController = require("../../controllers/recordController");
 
-router.get("/", workoutController.getAllWorkouts);
+router.get("/getAllWorkouts", workoutController.getAllWorkouts);
 
-router.get("/:workoutId", workoutController.getOneWorkout);
+router.get("/getWorkoutById/:workoutId", workoutController.getOneWorkout);
 
-router.post("/", workoutController.createNewWorkout);
+router.post("/createWorkout", workoutController.createNewWorkout);
 
-router.patch("/:workoutId", workoutController.updateOneWorkout);
+router.patch("/updateWorkout/:workoutId", workoutController.updateOneWorkout);
 
-router.delete("/:workoutId", workoutController.deleteOneWorkout);
+router.delete("/deleteWorkout/:workoutId", workoutController.deleteOneWorkout);
+
+router.get(
+  "/getWorkoutById/:workoutId/records",
+  recordController.getRecordForWorkout
+);
 
 module.exports = router;

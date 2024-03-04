@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 // calling router here
 app.use(webRoutes);
 app.use("/api/v1", v1Router);
-app.use("/api/v1/workouts", v1WorkoutRouter);
+app.use("/api/v1", v1WorkoutRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at ${hostname}:${port}`);
