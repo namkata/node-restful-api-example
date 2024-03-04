@@ -2,10 +2,10 @@
   "name": "fulltask-node-react",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/namkata/node-restful-api-example#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "dotenv": "16.0.3",
     "ejs": "3.1.8",
     "express": "4.18.2",
-    "mysql2": "2.3.3"
+    "mysql2": "2.3.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

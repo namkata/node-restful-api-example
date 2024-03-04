@@ -5,7 +5,7 @@ const {
   getHomepage,
   getABC,
   postAddUser,
-} = require("../controllers/homeController");
+} = require("../../controllers/homeController");
 
 router.get("/", getHomepage);
 
